@@ -5,16 +5,46 @@
 		<title> </title>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"> </script> 
 		<script> 
-			angular.module("app", []).controller("FirstCtrl", 
-				function FirstCtrl() {
-					var first = this; 
-					first.greeting="First";
+			angular.module("app", ["ui.router"])
+
+			.config(function config($stateProvider){
+				$stateProvider.state("index", {
+					url:"",
+					controller:"FirstCtrl as first",
+					templateUrl: "templates/first.html"
 				})
+				$stateProvider.state("second", {
+					url:"",
+					controller:"SecondCtrl as second",
+					templateUrl:"templates/second.html"
+				})
+			})
+			.service("greeting", function Greeeting(){
+				var greeting = this;
+				greeting.message = "default"; 
+			})
+
+			.controller("FirstCtrl", 
+				function FirstCtrl(greeting) {
+					var first = this; 
+					first.greeting=greeting;
+
+				})
+			.controller("SecondCtrl", 
+				function FirstCtrl(greeting) {
+					var second = this; 
+					second.greeting=greeting;
+					
+				})
+
+			
 		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"> </script>
+
+
 	</head>
-	<body ng-controller="FirstCtrl as first">
-		<input type="text" ng-model="first.greeting"/> 
-			<h1> {{ first.greeting }} {{ ":)" }} </h1>
+	<body>
+		<ui-view> </ui-view>
 	</body>
 	
 
