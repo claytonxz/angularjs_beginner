@@ -8,27 +8,20 @@
 
   <body ng-app="Todo">
     <div class="page-container" ng-controller="TodoController">
-      <span> {{ message }} </span>
-      <h2>must do </h2>
-      <ul class="todo-list">
-        <li>
-          Get good at Angular
-          <button class="bt bt-achieve">Done</button>
-        </li>
-        <li>
-          Actually get good at Angular
-        <button class="bt bt-achieve">Done</button>
   
+      <input type="text" ng-model="message" /> 
+      <span> {{message}} </span>
+      <h2>must do </h2>
+      <ul class="todo-list" ng-repeat="todo in todos track by $index">
         <li>
-          No, seriously. Get good at Angular. 
-          <button class="bt bt-achieve">Done</button>
+          <span> {{ todo }} </span>
+          <button class="bt bt-achieve" ng-click="done(todo)"> Done </button>
         </li>
-      
       </ul>
       
       <ul class="add-todo">
         <li>
-          <input type="text" class="txt" placeholder="New Todo"  />
+          <input type="text" class="txt" placeholder="New Todo" ng-model="newTodo" ng-keyup="add($event)" />
         </li>
       </ul>
       
