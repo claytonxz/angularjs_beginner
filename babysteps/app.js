@@ -13,6 +13,14 @@
 		this.isSelected = function(checkTab) {
 			return this.tab === checkTab; 
 		};
+	app.controller('ReviewController', function() {
+		this.review = {};
+
+		this.addReview = function(product) {
+			product.reviews.push(this.review); 
+			this.review={}; 
+		}; 
+	}); 
 
 	});
 	var gems = [
@@ -22,12 +30,24 @@
 		description: '...', 
 		canPurchase: true,
 		soldOut : true, 
+		reviews:[
+		{
+			stars: 5, 
+			body: "I love this product!", 
+			author: "bob@helloworld.com"
+		}], 
 	}, 
 	{
 		name: 'pentagonal gem', 
 		price: 5.95,
 		description: "...", 
 		canPurchase: false, 
+		reviews:[
+		{
+			stars: 3, 
+			body: "This product was mediocre... ", 
+			author: "lisa@helloworld.com"
+		}], 
 	}];
 
 })(); 
